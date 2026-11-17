@@ -51,7 +51,7 @@ That split — not a lift-and-shift of everything — is the point of Day 1.
 | Day | Focus | Artefacts |
 |---|---|---|
 | **Day 1 — Inventory & mapping** | Engagement asset inventory template + filled Northstar inventory; Journey → Next Flow mapping with moves / stays / retires verdicts | This README, `mapping/` |
-| **Day 2 — Data & consent on Data 360** | Segments rebuilt as Data Cloud segments, consent / preference sync design between the Engagement preference centre and Data 360, Data Action trigger specs | `data-360/` (planned) |
+| **Day 2 — Data & consent on Data 360** | Segments rebuilt as Data Cloud segments, consent / preference sync design between the Engagement preference centre and Data 360, Data Action trigger specs | `data-360/` |
 | **Day 3 — Cutover playbook** | Phased cutover plan, parallel-run validation checks (audience counts, suppression parity), rollback criteria, MCI reporting-continuity spec | `playbook/` (planned) |
 
 ## Repo layout
@@ -61,6 +61,10 @@ That split — not a lift-and-shift of everything — is the point of Day 1.
 | `mapping/engagement-asset-inventory.md` | The reusable inventory template (blank structure + field guide) and Northstar's filled inventory: journeys, automations, Data Extensions, content, CloudPages, scripts, and integrations |
 | `mapping/journey-to-next-flow-mapping.md` | Journey-by-journey mapping: today's entry / decision logic / sends → Next Flow / segment / Data Action equivalent, verdict, and reasoning per asset |
 | `mapping/README.md` | How to run the Day 1 method on any Engagement org: the order of work, the verdict rules, and the traps |
+| `data-360/README.md` | Day 2 overview: the three data & consent decisions, and where the five items carried forward from the Day 1 gap check land |
+| `data-360/segment-definitions.md` | Engagement audiences rebuilt as Data Cloud segments on the unified profile, per-DE sync verdicts, legacy-compatibility flags, and the parity rule |
+| `data-360/consent-preference-sync-design.md` | Consent / preference sync between CP-01 and Data 360: system of record, communication subscriptions (email + SMS mapped separately), conflict rules, the DE-05 suppression gate rebuilt, shared sending domains, test environments |
+| `data-360/data-action-triggers.md` | Data Action trigger specs DA-01–DA-06: payloads, guardrails, dedupe keys, failure handling |
 | `docs/BUILD_LOG.md` | Build log — one entry per day |
 
 ## Principles used throughout
@@ -74,6 +78,6 @@ That split — not a lift-and-shift of everything — is the point of Day 1.
 
 ## Status
 
-**Day 1 of 3 built** — inventory & mapping. Days 2–3 (Data 360 data & consent design, cutover playbook) follow the plan above. See `docs/BUILD_LOG.md` for the per-day record.
+**Day 2 of 3 built** — inventory & mapping (Day 1) and the Data 360 data & consent design (Day 2). Day 3 (cutover playbook) follows the plan above. See `docs/BUILD_LOG.md` for the per-day record.
 
 Other portfolio projects by the same builder live under the same GitHub account: Project #1 (SFMC campaign portfolio), Project #2 (Data 360 Unified Profile & Activation Lab), and Project #3 (Transactional & Journey API Integration Kit).
