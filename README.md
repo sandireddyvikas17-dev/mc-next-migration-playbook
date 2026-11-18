@@ -52,7 +52,7 @@ That split — not a lift-and-shift of everything — is the point of Day 1.
 |---|---|---|
 | **Day 1 — Inventory & mapping** | Engagement asset inventory template + filled Northstar inventory; Journey → Next Flow mapping with moves / stays / retires verdicts | This README, `mapping/` |
 | **Day 2 — Data & consent on Data 360** | Segments rebuilt as Data Cloud segments, consent / preference sync design between the Engagement preference centre and Data 360, Data Action trigger specs | `data-360/` |
-| **Day 3 — Cutover playbook** | Phased cutover plan, parallel-run validation checks (audience counts, suppression parity), rollback criteria, MCI reporting-continuity spec | `playbook/` (planned) |
+| **Day 3 — Cutover playbook** | Phased cutover plan, parallel-run validation checks (audience counts, suppression parity), rollback criteria, MCI reporting-continuity spec | `playbook/` |
 
 ## Repo layout
 
@@ -65,7 +65,16 @@ That split — not a lift-and-shift of everything — is the point of Day 1.
 | `data-360/segment-definitions.md` | Engagement audiences rebuilt as Data Cloud segments on the unified profile, per-DE sync verdicts, legacy-compatibility flags, and the parity rule |
 | `data-360/consent-preference-sync-design.md` | Consent / preference sync between CP-01 and Data 360: system of record, communication subscriptions (email + SMS mapped separately), conflict rules, the DE-05 suppression gate rebuilt, shared sending domains, test environments |
 | `data-360/data-action-triggers.md` | Data Action trigger specs DA-01–DA-06: payloads, guardrails, dedupe keys, failure handling |
+| `playbook/README.md` | Day 3 overview: run both, compare everything, then cut over — the three cutover decisions and where each spec lives |
+| `playbook/phased-cutover-plan.md` | Waves 0–4: foundation gate first, then J-05, J-02, J-01, J-04 one at a time, with entry / exit criteria per wave and the final state of Stays and Retires |
+| `playbook/parallel-run-validation.md` | Shadow then split-live parallel runs: audience-count comparison table, the Day 2 parity investigation order, suppression-parity SQL (Q-P1–Q-P4), consent spot checks, and send-behaviour checks |
+| `playbook/rollback-criteria.md` | Immediate rollback triggers (suppression / consent breach, duplicates, degraded consent sync), pause triggers, who decides, and how a rollback is executed |
+| `playbook/reporting-continuity-mci.md` | MCI reporting-continuity spec: one programme view across both platforms, harmonised dimensions frozen during waves, baseline and per-wave comparison windows |
 | `docs/BUILD_LOG.md` | Build log — one entry per day |
+
+## Day 3 answer: cutover, proven in parallel
+
+Day 3 produces the playbook in `playbook/`. Wave 0 moves no journey at all — it reconciles the suppression gate (SEG-00 with DE-05), proves the consent sync at all three gates, retires J-06 and A-04, and baselines MCI reporting. Only then do the Moves journeys cut over, one wave each, in this order: **J-05 dormant re-engagement** (the parallel-run proof), **J-02 card activation** (the event / Data Action proof), **J-01 onboarding** (high volume, after its duplicate entry path is gone), and **J-04 savings / CD maturity** (last, because it depends on real date fields in Data 360). Every wave runs shadow first, then split-live, compares audience counts and suppression by member and by reason, and keeps its Engagement journey paused and intact as the rollback target for a full cycle. J-03, J-07, and CP-01 stay in Engagement at the end of this playbook — that is the design, not an unfinished remainder.
 
 ## Principles used throughout
 
@@ -78,6 +87,6 @@ That split — not a lift-and-shift of everything — is the point of Day 1.
 
 ## Status
 
-**Day 2 of 3 built** — inventory & mapping (Day 1) and the Data 360 data & consent design (Day 2). Day 3 (cutover playbook) follows the plan above. See `docs/BUILD_LOG.md` for the per-day record.
+**Complete — 3 of 3 days built** — inventory & mapping (Day 1), the Data 360 data & consent design (Day 2), and the cutover playbook (Day 3). See `docs/BUILD_LOG.md` for the per-day record.
 
 Other portfolio projects by the same builder live under the same GitHub account: Project #1 (SFMC campaign portfolio), Project #2 (Data 360 Unified Profile & Activation Lab), and Project #3 (Transactional & Journey API Integration Kit).
